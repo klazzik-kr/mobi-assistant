@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mobi Assistant 사용 방법</title>
+  <style>
+    :root{
+      color-scheme: dark;
+      --bg:#0b0f19;
+      --panel:rgba(255,255,255,0.06);
+      --panel2:rgba(255,255,255,0.04);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.68);
+      --line:rgba(255,255,255,0.12);
+      --accent:#7dd3fc;
+      --radius:14px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        color-scheme: light;
+        --bg:#f6f7fb;
+        --panel:rgba(0,0,0,0.04);
+        --panel2:rgba(0,0,0,0.03);
+        --text:rgba(0,0,0,0.88);
+        --muted:rgba(0,0,0,0.62);
+        --line:rgba(0,0,0,0.10);
+        --accent:#0369a1;
+      }
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(125,211,252,0.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(167,139,250,0.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    .wrap{ max-width:920px; margin:0 auto; padding:32px 16px 56px; }
+    .top{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      padding:16px;
+    }
+    h1{ margin:0 0 6px; font-size:24px; letter-spacing:-0.2px; }
+    .sub{ margin:0; color:var(--muted); font-size:14px; }
+    .card{
+      margin-top:14px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      padding:16px;
+    }
+    h2{ margin:0 0 10px; font-size:18px; letter-spacing:-0.2px; }
+    p{ margin:8px 0; }
+    ol,ul{ margin:8px 0 0 18px; }
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+    code{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+      background:rgba(0,0,0,0.22);
+      padding:2px 6px;
+      border-radius:8px;
+      border:1px solid var(--line);
+    }
+    @media (prefers-color-scheme: light){
+      code{ background:rgba(0,0,0,0.06); }
+    }
+    .ph{
+      margin-top:10px;
+      border-radius:12px;
+      border:1px dashed var(--line);
+      padding:14px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .note{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px dashed var(--line);
+      color:var(--muted);
+      background:rgba(255,255,255,0.03);
+      font-size:13px;
+    }
+    .footer{ margin-top:16px; color:var(--muted); font-size:12px; text-align:center; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1>사용 방법</h1>
+      <p class="sub">스크린샷을 추가하기 전까지는 “틀리지 않는 범위”로 안내만 둡니다.</p>
+      <p style="margin-top:10px;"><a href="./index.html">← 다운로드 페이지로</a></p>
+    </div>
+
+    <div class="card">
+      <h2>1) 다운로드</h2>
+      <ol>
+        <li><a href="https://github.com/klazzik-kr/mobi-assistant/releases/latest">Releases (latest)</a>로 이동합니다.</li>
+        <li><b>Assets</b>에서 <code>MobiAssistantPortable.exe</code>를 다운로드합니다.</li>
+        <li>필요한 경우 <code>rune.json</code>도 함께 다운로드합니다.</li>
+      </ol>
+      <div class="ph">[추가 예정] Releases 화면 스크린샷: <code>images/usage-01.png</code></div>
+    </div>
+
+    <div class="card">
+      <h2>2) 실행</h2>
+      <ol>
+        <li><code>MobiAssistantPortable.exe</code>를 실행합니다.</li>
+        <li>Windows SmartScreen 경고가 뜰 수 있습니다(개인 제작/서명 없음).</li>
+      </ol>
+      <div class="ph">[추가 예정] 프로그램 실행 화면 스크린샷: <code>images/usage-02.png</code></div>
+    </div>
+
+    <div class="card">
+      <h2>3) 룬 데이터 적용</h2>
+      <p>
+        rune.json 적용 방식은 앱 UI 기준으로 안내가 가장 정확합니다.
+        스크린샷을 추가한 뒤, 이 섹션을 “버튼 위치/메뉴 이름” 기준으로 확정합니다.
+      </p>
+      <div class="ph">[추가 예정] 룬 불러오기/가져오기 화면 스크린샷: <code>images/usage-03.png</code></div>
+
+      <div class="note">
+        <ul>
+          <li>OneDrive 동기화 폴더에서는 파일 잠김/권한 문제로 오동작할 수 있어 일반 폴더 사용을 권장합니다.</li>
+          <li>rune.json이 보이지 않거나 적용이 안 되면 파일명/형식을 먼저 확인하세요.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">© klazzik-kr · mobi-assistant</div>
+  </div>
+</body>
+</html>
