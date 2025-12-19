@@ -13,7 +13,6 @@
       --muted:#9aa4b2;
       --line:#223043;
       --accent:#5aa9ff;
-      --accent2:#22c55e;
       --warn:#f59e0b;
       --danger:#ef4444;
       --shadow: 0 10px 30px rgba(0,0,0,.45);
@@ -44,13 +43,12 @@
       padding:14px 18px;
       display:flex;
       align-items:center;
-      gap:12px;
       justify-content:space-between;
+      gap:12px;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
       font-weight:800;
-      letter-spacing:.2px;
     }
     .badge{
       font-size:12px;
@@ -61,9 +59,7 @@
       background: rgba(17,24,38,.6);
     }
     .nav{
-      display:flex; flex-wrap:wrap;
-      gap:8px;
-      justify-content:flex-end;
+      display:flex; flex-wrap:wrap; gap:8px;
     }
     .nav a{
       font-size:13px;
@@ -84,7 +80,7 @@
       background: linear-gradient(180deg, rgba(17,24,38,.78), rgba(15,23,34,.55));
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding:18px 18px 14px;
+      padding:18px;
     }
     .hero h1{margin:0 0 6px; font-size:26px}
     .hero p{margin:0; color:var(--muted)}
@@ -107,80 +103,73 @@
       color:#cfe6ff;
       font-size:13px;
     }
-    .hint b{color:#eaf4ff}
     .warn{
-      border:1px dashed rgba(245,158,11,.55);
+      border-color: rgba(245,158,11,.55);
       background: rgba(245,158,11,.08);
       color:#ffe8bf;
     }
-    .danger{
-      border:1px dashed rgba(239,68,68,.55);
-      background: rgba(239,68,68,.08);
-      color:#ffd0d0;
-    }
-    ul{margin:8px 0 0 18px; color:var(--text)}
+    ul{margin:8px 0 0 18px}
     li{margin:6px 0}
-    .grid{
+    .two{
       display:grid;
-      grid-template-columns: 1fr;
+      grid-template-columns:1fr;
       gap:14px;
-      margin-top:12px;
+    }
+    @media(min-width:900px){
+      .two{grid-template-columns:1fr 1fr}
     }
     figure{
       margin:0;
       border:1px solid rgba(34,48,67,.65);
-      border-radius: 14px;
+      border-radius:14px;
       overflow:hidden;
       background: rgba(15,23,34,.55);
     }
-    figure img{
-      width:100%;
-      display:block;
-      background:#0a0f16;
-    }
+    figure img{width:100%; display:block}
     figcaption{
       padding:10px 12px;
       border-top:1px solid rgba(34,48,67,.65);
       color:var(--muted);
       font-size:13px;
     }
-    .two{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-    }
-    @media (min-width: 900px){
-      .two{ grid-template-columns: 1fr 1fr; }
-      .grid{ grid-template-columns: 1fr 1fr; }
-    }
-    .footer{
-      margin-top:18px;
-      color:var(--muted);
-      font-size:13px;
-      text-align:center;
-    }
-    .back{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top:14px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(154,164,178,.25);
-      background: rgba(17,24,38,.35);
-      color:var(--muted);
-    }
-    .back:hover{color:var(--text); border-color: rgba(90,169,255,.45); text-decoration:none}
     .k{
       display:inline-block;
       padding:2px 8px;
       border-radius:8px;
       border:1px solid rgba(154,164,178,.20);
       background: rgba(15,23,34,.6);
-      color:#d7e2f2;
       font-size:12px;
-      vertical-align:middle;
     }
+
+    /* 0) 바로가기 카드 */
+    .toc-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    .toc-card{
+      display:flex; gap:12px; align-items:center;
+      padding:14px;
+      border-radius:14px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);
+      text-decoration:none;
+    }
+    .toc-card:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(90,169,255,.45);
+    }
+    .toc-num{
+      width:36px; height:36px;
+      border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:800;
+      background: rgba(90,169,255,.18);
+      color:#cfe6ff;
+    }
+    .toc-title{font-weight:800}
+    .toc-desc{font-size:13px; color:var(--muted)}
   </style>
 </head>
 
@@ -193,10 +182,9 @@
     </div>
     <nav class="nav">
       <a href="#download">1. 다운로드</a>
-      <a href="#runedb">2. 룬DB 연결</a>
-      <a href="#basic">3. 기본 사용</a>
-      <a href="#alarm">4. 알람</a>
+      <a href="#runedb">2. 룬DB</a>
       <a href="#overlay">5. 오버레이</a>
+      <a href="#character">6. 캐릭터</a>
     </nav>
   </div>
 </header>
@@ -204,314 +192,50 @@
 <main>
   <section class="hero">
     <h1>usage.html</h1>
-    <p>
-      이 페이지는 <span class="k">포터블 exe</span> 실행 + <span class="k">룬DB(JSON)</span> 가져오기 +
-      <span class="k">일일/주간 체크</span> + <span class="k">오버레이</span> 사용 흐름을 스크린샷 기반으로 정리한 문서입니다.
-    </p>
-    <a class="back" href="./index.html">← index로 돌아가기</a>
+    <p>포터블 실행부터 룬DB, 오버레이, 캐릭터 세팅까지 한 번에 정리한 사용 설명서입니다.</p>
   </section>
 
-  <!-- 1. 다운로드 -->
-  <section id="download" class="card">
-    <h2>1) 다운로드</h2>
-    <ul>
-      <li><b>Releases</b> 페이지의 <b>Assets</b>에서 파일을 받습니다.</li>
-      <li>기본적으로 <b>exe(프로그램)</b>와 <b>mabi_rune_db.json(룬DB)</b> 두 개가 있습니다.</li>
-    </ul>
-
-    <div class="grid">
-      <figure>
-        <img src="./usage_image/01_dl.png" alt="다운로드(릴리즈 에셋)" />
-        <figcaption>
-          Releases → Assets에서 <b>MobiAssistant-Portable-xxxx.exe</b>와 <b>mabi_rune_db.json</b>을 다운로드
-        </figcaption>
-      </figure>
-      <div class="hint warn">
-        <b>팁</b><br/>
-        exe만 받아도 실행은 되지만, 룬DB를 같이 쓰려면 <b>mabi_rune_db.json</b>을 가져오면 편합니다.
-      </div>
+  <section class="card">
+    <h2>0) 바로가기</h2>
+    <div class="toc-grid">
+      <a class="toc-card" href="#download"><div class="toc-num">1</div><div><div class="toc-title">다운로드</div><div class="toc-desc">exe / json</div></div></a>
+      <a class="toc-card" href="#runedb"><div class="toc-num">2</div><div><div class="toc-title">룬DB</div><div class="toc-desc">Import JSON</div></div></a>
+      <a class="toc-card" href="#overlay"><div class="toc-num">5</div><div><div class="toc-title">오버레이</div><div class="toc-desc">물물교환 · 어비스</div></div></a>
+      <a class="toc-card" href="#character"><div class="toc-num">6</div><div><div class="toc-title">캐릭터</div><div class="toc-desc">장비 · 소켓</div></div></a>
     </div>
   </section>
 
-  <!-- 2. 룬DB 연결 -->
-  <section id="runedb" class="card">
-    <h2>2) 룬DB(JSON) 연결</h2>
-
-    <h3>2-1. 메인에서 룬 데이터베이스로 이동</h3>
-    <div class="two">
-      <figure>
-        <img src="./usage_image/02_1.png" alt="메인에서 룬 데이터베이스 관리 버튼" />
-        <figcaption>메인 하단의 <b>룬 데이터베이스 관리</b> 버튼</figcaption>
-      </figure>
-      <figure>
-        <img src="./usage_image/02_2.png" alt="룬 데이터베이스 화면 Import JSON 버튼" />
-        <figcaption>룬 데이터베이스 화면 우측 상단의 <b>Import JSON</b></figcaption>
-      </figure>
-    </div>
-
-    <h3>2-2. JSON 파일 선택</h3>
-    <div class="two">
-      <figure>
-        <img src="./usage_image/02_3.png" alt="파일 선택창에서 mabi_rune_db.json 선택" />
-        <figcaption>파일 선택창에서 <b>mabi_rune_db.json</b> 선택 후 <b>열기</b></figcaption>
-      </figure>
-      <figure>
-        <img src="./usage_image/02_4.png" alt="룬 목록이 로드된 화면" />
-        <figcaption>정상 로드되면 상단에 총 개수가 잡히고, 목록이 표시됩니다.</figcaption>
-      </figure>
-    </div>
-
-    <div class="hint">
-      <b>참고</b><br/>
-      룬DB는 Import/Export로 관리합니다. (친구에게 배포할 때도 JSON만 공유하면 동일하게 세팅 가능)
-    </div>
-  </section>
-
-  <!-- 3. 기본 사용 -->
-  <section id="basic" class="card">
-    <h2>3) 기본 사용환경 예시</h2>
-    <ul>
-      <li>메인 화면에서 <b>캐릭터 슬롯</b>, <b>일일/주간/주말 체크</b>, <b>상점 체크</b>를 한 화면에서 관리합니다.</li>
-      <li>슬롯 수(#1~#6)는 캐릭터바에서 늘릴 수 있습니다.</li>
-    </ul>
-
-    <figure>
-      <img src="./usage_image/03_norm.png" alt="기본 사용환경 예시" />
-      <figcaption>기본 화면 예시 (체크박스/카운트/하단 버튼)</figcaption>
-    </figure>
-  </section>
-
-  <!-- 4. 알람 -->
-  <section id="alarm" class="card">
-    <h2>4) 알람</h2>
-    <ul>
-      <li><b>결계 / 검은구멍 / 필드보스</b> 알람을 켜고, 남은 시간을 확인할 수 있습니다.</li>
-      <li>검은구멍은 <b>갱신 타이머</b> 기준으로 관리됩니다. (예: 남은 시간 표시)</li>
-    </ul>
-
-    <figure>
-      <img src="./usage_image/04_blackhole.png" alt="검은구멍 알람 예시" />
-      <figcaption>알람 ON/OFF 및 남은 시간 표시 예시</figcaption>
-    </figure>
-
-    <div class="hint warn">
-      <b>팁</b><br/>
-      알람은 “켜두고 보는 용도”에 가깝고, 체크박스(퀘스트/오버레이)는 “완료 여부 기록” 용도라고 보면 됨.
-    </div>
-  </section>
-
-  <!-- 5. 오버레이 -->
-  <section id="overlay" class="card">
-    <h2>5) 오버레이</h2>
-    <p style="margin:0;color:var(--muted)">
-      오버레이는 메인 체크보드에서 <b>특정 항목(일일물교/주간물교/어비스/레이드 등)</b>을 눌렀을 때 뜨는 “상세 체크창”입니다.
-    </p>
-
-    <h3>5-1. 물물교환 오버레이</h3>
-    <div class="two">
-      <figure>
-        <img src="./usage_image/05_0.png" alt="메인 하단 물물교환 버튼" />
-        <figcaption>메인 하단의 <b>물물교환</b> 버튼</figcaption>
-      </figure>
-      <figure>
-        <img src="./usage_image/05_1.png" alt="일일 물물교환 오버레이(비어있음)" />
-        <figcaption>일일 물물교환 오버레이 (등록된 교환식이 없으면 0개 표시)</figcaption>
-      </figure>
-    </div>
-
-    <div class="grid">
-      <figure>
-        <img src="./usage_image/05_1_1.png" alt="물물교환 진행 화면에서 물물교환 DB 버튼" />
-        <figcaption>물물교환 진행 화면 → 우측 상단 <b>물물교환 DB</b>로 이동</figcaption>
-      </figure>
-
-      <figure>
-        <img src="./usage_image/05_1_2.png" alt="물물교환 DB에서 새 교환식 추가 버튼" />
-        <figcaption>물물교환 DB → <b>+ 새 교환식</b>으로 교환식 추가</figcaption>
-      </figure>
-
-      <figure>
-        <img src="./usage_image/05_1_3.png" alt="교환식 입력 폼" />
-        <figcaption>마을/NPC/주는 것/받는 것/주기/대상 입력 후 <b>저장</b></figcaption>
-      </figure>
-
-      <figure>
-        <img src="./usage_image/05_1_4.png" alt="교환식 목록과 ON 체크" />
-        <figcaption>목록에서 <b>ON</b>을 켜야 오버레이에 표시됩니다.</figcaption>
-      </figure>
-
-      <figure>
-        <img src="./usage_image/05_1_5.png" alt="주간 물물교환 오버레이에 표시" />
-        <figcaption>오버레이에 주간 물물교환이 표시된 예시</figcaption>
-      </figure>
-
-      <div class="hint">
-        <b>정리</b><br/>
-        물물교환은 <b>DB에 교환식을 등록</b> → <b>ON 활성화</b> → 오버레이에서 캐릭터별 체크로 관리하는 흐름입니다.
-      </div>
-    </div>
-
-    <h3>5-2. 어비스/레이드 오버레이</h3>
-    <div class="two">
-      <figure>
-        <img src="./usage_image/05_1_6.png" alt="메인에서 어비스/레이드 항목" />
-        <figcaption>메인 체크보드에서 <b>어비스/레이드</b> 항목을 눌러 오버레이 열기</figcaption>
-      </figure>
-      <figure>
-        <img src="./usage_image/05_2.png" alt="어비스 오버레이 (항목 없음)" />
-        <figcaption>어비스 오버레이: 항목이 없으면 <b>+추가</b>로 항목을 먼저 등록</figcaption>
-      </figure>
-    </div>
-
-    <div class="grid">
-      <figure>
-        <img src="./usage_image/05_2_1.png" alt="어비스 항목 추가 입력" />
-        <figcaption>항목 이름 입력 후 확인</figcaption>
-      </figure>
-
-      <figure>
-        <img src="./usage_image/05_2_2.png" alt="레이드 오버레이 예시(항목 존재)" />
-        <figcaption>레이드 오버레이 예시: 항목별로 캐릭터(#1~#4 등) 체크</figcaption>
-      </figure>
-
-      <figure>
-        <img src="./usage_image/05_3.png" alt="메인 체크보드 반영" />
-        <figcaption>오버레이에서 체크한 결과는 메인 체크보드에도 반영됩니다.</figcaption>
-      </figure>
-
-      <div class="hint warn">
-        <b>팁</b><br/>
-        오버레이 항목은 “직접 쓰는 리스트”라서, 본인이 도는 어비스/레이드 이름만 추가해두면 됨.
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. 캐릭터/룬/세팅(추가 스크린샷 파트) -->
+  <!-- 6-6 핵심 파트 -->
   <section id="character" class="card">
-    <h2>추가: 캐릭터 세팅(직업/장신구/개조/장비)</h2>
-
-    <h3>6-1. 슬롯 추가 / 슬롯 확장</h3>
-    <div class="two">
-      <figure>
-        <img src="./usage_image/06_1.png" alt="메인에서 슬롯 추가 버튼" />
-        <figcaption>캐릭터바에서 <b>+ 슬롯 추가</b></figcaption>
-      </figure>
-      <figure>
-        <img src="./usage_image/06_2.png" alt="슬롯이 추가된 화면" />
-        <figcaption>슬롯이 추가되면 메인 체크보드도 #2 컬럼이 함께 늘어납니다.</figcaption>
-      </figure>
-    </div>
-
-    <h3>6-2. 캐릭터 페이지에서 직업 선택</h3>
-    <div class="two">
-      <figure>
-        <img src="./usage_image/06_4.png" alt="캐릭터 페이지 진입" />
-        <figcaption>캐릭터 슬롯을 클릭하면 캐릭터 상세 페이지로 이동</figcaption>
-      </figure>
-      <figure>
-        <img src="./usage_image/06_6.png" alt="직업 드롭다운에서 직업 선택" />
-        <figcaption><b>직업</b> 드롭다운에서 클래스 선택</figcaption>
-      </figure>
-    </div>
-
-    <div class="hint">
-      <b>중요</b><br/>
-      직업을 선택하면 메인페이지 캐릭터 슬롯/표시가 함께 바뀝니다.
-    </div>
-
-    <!-- ✅ 요청 반영: 직업 선택 후 메인 반영 (06_7) -->
-    <figure style="margin-top:12px">
-      <img src="./usage_image/06_7.png" alt="직업 선택이 메인페이지에 반영된 화면" />
-      <figcaption><b>직업 목록에서 클래스 선택 → 메인 페이지에 반영됨</b> (06_7)</figcaption>
-    </figure>
-
-    <h3>6-3. 장신구 선택 → 장비칸에 자동 반영</h3>
-    <div class="two">
-      <figure>
-        <img src="./usage_image/06_8.png" alt="장신구 드롭다운 선택" />
-        <figcaption>장신구(3칸)를 선택합니다.</figcaption>
-      </figure>
-
-      <!-- ✅ 요청 반영: 장신구 선택시 장비칸 반영 (06_9) -->
-      <figure>
-        <img src="./usage_image/06_9.png" alt="장신구 선택이 장비칸에 반영" />
-        <figcaption><b>장신구 선택 → 아래 장비칸(목걸이/반지)에 반영</b> (06_9)</figcaption>
-      </figure>
-    </div>
-
-    <h3>6-4. 스킬 개조 선택</h3>
-    <!-- ✅ 요청 반영: 스킬개조 이미지 정확히 (06_10) -->
-    <figure>
-      <img src="./usage_image/06_10.png" alt="개조(1~6) 선택 UI" />
-      <figcaption><b>개조 1~6</b> 선택 (스킬 개조 단계/프리셋 개념)</figcaption>
-    </figure>
-
-    <h3>6-5. 스킬 태그 / 펫 메모</h3>
-    <div class="two">
-      <figure>
-        <img src="./usage_image/06_11.png" alt="스킬 태그" />
-        <figcaption>스킬 태그(예: 연타/강타/방해 등)를 기록</figcaption>
-      </figure>
-      <figure>
-        <img src="./usage_image/06_12.png" alt="펫 정보" />
-        <figcaption>펫: 등급/스탯/태그/스킬 등을 메모처럼 기록</figcaption>
-      </figure>
-    </div>
-
     <h3>6-6. 장비 입력(강화/룬/초월/소켓/인챈트 등)</h3>
-        <p style="margin:0;color:var(--muted)">
+
+    <p style="margin:0;color:var(--muted)">
       장비 칸에서는 강화 수치, 룬 선택, 초월, 소켓을 빠르게 입력할 수 있습니다.
       특히 <b>강화 수치</b>와 <b>소켓</b>은 마우스 좌/우클릭으로 빠른 조작이 가능합니다.
     </p>
 
-    <div class="hint" style="margin-top:12px">
-      <b>강화 수치(무기/엠블럼/장신구/방어구 공통)</b><br/>
+    <div class="hint">
+      <b>강화 수치</b><br/>
       • <span class="k">좌클릭</span> : +1 증가<br/>
       • <span class="k">우클릭</span> : -1 감소
     </div>
 
-    <div class="hint" style="margin-top:12px">
-      <b>소켓(무기/엠블럼/장신구/방어구)</b><br/>
-      • <span class="k">좌클릭</span> : 소켓 단계 변경 <b>0 → 1 → 2 → 3</b> (반복)<br/>
-      • <span class="k">우클릭</span> : 소켓 색상 변경<br/>
-      &nbsp;&nbsp;– 기본: <b>보라 테두리(스타프리즘)</b> → <b>핑크 테두리(스타프리즘S)</b> → <b>핑크 박스(온전한 스타프리즘)(반복)
+    <div class="hint">
+      <b>소켓</b><br/>
+      • <span class="k">좌클릭</span> : 0 → 1 → 2 → 3 (반복)<br/>
+      • <span class="k">우클릭</span> : 색상 변경<br/>
+      &nbsp;&nbsp;– <b>보라 테두리(스타프리즘)</b> →
+      <b>핑크 테두리(스타프리즘S)</b> →
+      <b>핑크 박스(온전한 스타프리즘)</b>
     </div>
 
-    <div class="hint warn" style="margin-top:12px">
+    <div class="hint warn">
       <b>특수 색상 조합 (무기 1번 소켓 / 엠블럼)</b><br/>
-      무기 첫 번째 소켓과 엠블럼은 일반 3색 외에 아래 조합까지 순환됩니다.<br/>
-      • <b>보라 테두리(스타프리즘)</b>, <b>핑크 테두리(스타프리즘s)</b>, <b>핑크 박스(온전한 스타프리즘)</b><br/>
-      • <b>보라 테두리 + 노랑/초록 박스(헬리오도르/그린 헬리오도르)</b><br/>
-      • <b>핑크 테두리 + 노랑/초록 박스(정제된 헬리오도르/정제된 그린 헬리오도르)</b><br/>
-      • <b>노랑 박스/초록 박스(순수한 헬리오도르/순수한 그린 헬리오도르)</b>
-    </div>
-
-    <div class="two">
-      <figure>
-        <img src="./usage_image/06_13.png" alt="장비 입력 핵심 영역" />
-        <figcaption>장비: 강화 수치 / 장비 선택 / 초월 / 소켓 등을 입력</figcaption>
-      </figure>
-      <figure>
-        <img src="./usage_image/06_14.png" alt="세분화 화면" />
-        <figcaption><b>세분화</b>를 누르면 장비별 상세 입력(인챈트/중복 등) 화면으로 확장</figcaption>
-      </figure>
-    </div>
-
-    <figure>
-      <img src="./usage_image/06_15.png" alt="인챈트/중복 입력 예시" />
-      <figcaption>상세 입력 예시: 인챈트/중복 세팅 값 기록</figcaption>
-    </figure>
-
-    <div class="hint danger">
-      <b>주의</b><br/>
-      이 페이지의 스크린샷 파일명은 저장소의 <b>/usage_image</b> 폴더에 있는 파일명을 그대로 사용합니다.<br/>
-      파일명을 바꾸면, 여기 img 경로도 같이 바꿔야 합니다.
+      • 보라 테두리 + 노랑/초록 박스 (헬리오도르 / 그린 헬리오도르)<br/>
+      • 핑크 테두리 + 노랑/초록 박스 (정제된 헬리오도르 / 정제된 그린 헬리오도르)<br/>
+      • 노랑/초록 박스 (순수한 헬리오도르 / 순수한 그린 헬리오도르)
     </div>
   </section>
-
-  <div class="footer">
-    © Mobi Assistant · usage.html
-  </div>
 </main>
 </body>
 </html>
