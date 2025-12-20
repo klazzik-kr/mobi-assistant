@@ -228,6 +228,19 @@
       color:var(--muted);
       margin-top:2px;
     }
+
+    /* (추가) 삭제 섹션 경로 표시용 */
+    .path{
+      margin-top:6px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px dashed rgba(90,169,255,.35);
+      background: rgba(90,169,255,.06);
+      color:#cfe6ff;
+      font-size:13px;
+      overflow:auto;
+      white-space:pre;
+    }
   </style>
 </head>
 
@@ -245,6 +258,7 @@
       <a href="#alarm">4. 알람</a>
       <a href="#overlay">5. 오버레이</a>
       <a href="#character">6. 캐릭터/장비</a>
+      <a href="#remove">7. 삭제</a>
     </nav>
   </div>
 </header>
@@ -312,6 +326,15 @@
         <div>
           <div class="toc-title">캐릭터/장비</div>
           <div class="toc-desc">직업 · 장신구 · 개조 · 소켓</div>
+        </div>
+      </a>
+
+      <!-- ✅ (추가) 7) 삭제/초기화 카드 -->
+      <a class="toc-card" href="#remove">
+        <div class="toc-num">7</div>
+        <div>
+          <div class="toc-title">삭제 / 초기화</div>
+          <div class="toc-desc">데이터 · exe 제거</div>
         </div>
       </a>
     </div>
@@ -613,6 +636,41 @@
       <b>주의</b><br/>
       이 페이지의 스크린샷 파일명은 저장소의 <b>/usage_image</b> 폴더에 있는 파일명을 그대로 사용합니다.<br/>
       파일명을 바꾸면, 여기 img 경로도 같이 바꿔야 합니다.
+    </div>
+  </section>
+
+  <!-- ✅ 7. 삭제 / 초기화 (추가) -->
+  <section id="remove" class="card">
+    <h2>7) 프로그램 삭제 / 초기화</h2>
+
+    <p style="margin:0;color:var(--muted)">
+      Mobi Assistant는 <b>설치형이 아닌 포터블 프로그램</b>입니다.<br/>
+      아래 두 가지만 삭제하면 프로그램과 데이터가 완전히 제거됩니다.
+    </p>
+
+    <h3>7-1. 데이터 삭제</h3>
+    <ul>
+      <li>
+        <b>내 문서 (Documents)</b> 폴더에 생성되는 아래 경로를 삭제합니다.
+        <div class="path">Documents\GameAS</div>
+      </li>
+      <li>이 폴더에는 캐릭터, 체크 상태, 룬DB, 장비/세팅 정보가 저장됩니다.</li>
+    </ul>
+
+    <h3>7-2. 프로그램 삭제</h3>
+    <ul>
+      <li>사용 중인 <b>MobiAssistantPortable.exe</b> 파일을 삭제합니다.</li>
+      <li>바탕화면 / 다운로드 / 임의 폴더 어디에 있어도 무관합니다.</li>
+    </ul>
+
+    <div class="hint">
+      <b>정리</b><br/>
+      실행 파일 + <b>Documents\GameAS</b> 폴더 삭제 = 완전 제거
+    </div>
+
+    <div class="hint warn" style="margin-top:10px">
+      <b>참고</b><br/>
+      레지스트리, AppData, 시스템 영역에는 어떠한 파일도 생성하지 않습니다.
     </div>
   </section>
 
